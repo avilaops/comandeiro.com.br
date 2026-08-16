@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Comandeiro — a comanda que faz o restaurante andar</title>
+<meta name="description" content="O garçom anota na mesa, a cozinha recebe na hora e a conta fecha sozinha. Plataforma gastronômica para restaurantes, bares e espetarias.">
+<meta name="theme-color" content="#100E0C">
+<link rel="canonical" href="https://comandeiro.com.br/">
+<link rel="alternate" hreflang="en" href="https://comandeiro.com/">
+<link rel="alternate" hreflang="pt-BR" href="https://comandeiro.com.br/">
+<link rel="alternate" hreflang="x-default" href="https://comandeiro.com/">
+
+<meta property="og:title" content="Comandeiro — a comanda que faz o restaurante andar">
+<meta property="og:description" content="O garçom anota. A cozinha vê na hora. A conta já está certa.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://comandeiro.com.br/">
+<meta property="og:image" content="https://comandeiro.com.br/og.png">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:locale:alternate" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/jetbrains-mono-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/comandeiro.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      "name": "Comandeiro",
+      "applicationCategory": "BusinessApplication",
+      "applicationSubCategory": "Restaurant point of sale",
+      "operatingSystem": "Web browser",
+      "url": "https://comandeiro.com.br/",
+      "description": "Pedido na mesa pelo garçom, tela de cozinha, cardápio digital e comanda para restaurantes, bares e espetarias.",
+      "offers": { "@type": "Offer", "priceCurrency": "BRL", "price": "0", "description": "Implantação uma vez e mensalidade fixa por casa. Sem comissão sobre a venda." },
+      "publisher": { "@id": "https://avilaops.com/#org" }
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://avilaops.com/#org",
+      "name": "Avila Ops",
+      "url": "https://avilaops.com",
+      "email": "contato@comandeiro.com.br"
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<a class="skip" href="#main">Pular para o conteúdo</a>
+
+<header>
+  <div class="wrap">
+    <a class="mark" href="/">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M6 3h12v16l-2-1.4-2 1.4-2-1.4-2 1.4-2-1.4L6 19V3Z"/>
+        <path d="M9 8h6M9 12h4"/>
+      </svg>
+      Comandeiro
+    </a>
+    <nav>
+      <a class="hide-sm" href="#how">Como funciona</a>
+      <a class="hide-sm" href="#inside">O que tem dentro</a>
+      <a class="hide-sm" href="#pricing">Preço</a>
+      <a class="btn" href="#contact">Agendar demonstração</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+<div class="hero">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow">Plataforma gastronômica</p>
+      <h1>A comanda que faz o restaurante andar.</h1>
+      <p class="lede" style="margin-top:1.25rem">
+        O garçom anota na mesa. A cozinha vê no segundo em que ele envia. A conta
+        fecha sozinha. Sem gritar do outro lado do salão, sem papelzinho, sem
+        “de quem era o frango?”
+      </p>
+
+      <div class="actions">
+        <a class="btn btn-lg" href="#contact">Agendar demonstração</a>
+        <a class="btn btn-lg btn-ghost" href="#how">Ver como funciona</a>
+      </div>
+
+      <p class="note">Roda no navegador do celular que a sua equipe já carrega.</p>
+    </div>
+
+    <!-- Demo: o produto se explicando em movimento. Sem JS, fica o estado final. -->
+    <div class="demo" data-demo data-moeda="R$"
+         data-textos='{"aguardando":"esperando pedido","naChapa":"na chapa","atencao":"demorando","atrasado":"atrasado"}'>
+
+      <section class="device" aria-label="Garçom lançando o pedido">
+        <div class="chrome"><span>Garçom · Mesa 07</span><span class="live">live</span></div>
+        <div class="screen">
+          <div class="item" data-item data-qtd-final="3" data-preco="900">
+            <span class="nome">Espeto de carne</span><span class="preco">R$ 9,00</span>
+            <span class="qtd" data-qtd></span>
+          </div>
+          <div class="item" data-item data-qtd-final="2" data-preco="800">
+            <span class="nome">Coração</span><span class="preco">R$ 8,00</span>
+            <span class="qtd" data-qtd></span>
+          </div>
+          <div class="item" data-item data-qtd-final="1" data-preco="1100">
+            <span class="nome">Queijo coalho</span><span class="preco">R$ 11,00</span>
+            <span class="qtd" data-qtd></span>
+          </div>
+          <div class="item" data-item data-qtd-final="2" data-preco="700">
+            <span class="nome">Cerveja 600ml</span><span class="preco">R$ 7,00</span>
+            <span class="qtd" data-qtd></span>
+          </div>
+
+          <div class="enviar" data-enviar>
+            <span class="total" data-total>R$ 0,00</span>
+            <span class="acao">Enviar para a cozinha</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="device" aria-label="Tela da cozinha">
+        <div class="chrome"><span>Cozinha</span><span class="live">live</span></div>
+        <div class="screen">
+          <p class="vazio" data-vazio>nenhuma comanda na fila</p>
+
+          <div class="kds" data-kds hidden>
+            <article class="comanda" data-comanda data-estado="normal">
+              <div class="topo"><span>MESA 07</span><span>#0142</span></div>
+              <div class="linha"><span class="q">3×</span><span>Espeto de carne</span></div>
+              <div class="linha"><span class="q">2×</span><span>Coração</span></div>
+              <div class="obs">sem pimenta</div>
+              <div class="linha"><span class="q">1×</span><span>Queijo coalho</span></div>
+              <div class="linha"><span class="q">2×</span><span>Cerveja</span></div>
+              <div class="rodape">
+                <span class="estado" data-estado-texto>na chapa</span>
+                <span class="cron" data-cron>00:00</span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <p class="legenda">
+        <span>O cronômetro fica amarelo e depois vermelho — a cozinha não precisa adivinhar.</span>
+        <button type="button" data-repetir>repetir ↻</button>
+      </p>
+    </div>
+  </div>
+</div>
+
+<section id="how">
+  <div class="wrap">
+    <div class="section-head revela">
+      <p class="eyebrow">Como funciona</p>
+      <h2>Três passos, e nenhum deles é “digitar de novo”.</h2>
+      <p class="lede" style="max-width:54ch">
+        O pedido é escrito uma vez, por quem está de pé na mesa — e todo o resto
+        da casa lê dali.
+      </p>
+    </div>
+
+    <div class="steps revela">
+      <div class="step">
+        <span class="num">PASSO 01</span>
+        <h3>O garçom anota</h3>
+        <p>Toca na mesa, toca nos itens. Um toque soma um — que é como se pede outra rodada. Observação como “sem pimenta” vai junto com o item.</p>
+      </div>
+      <div class="step">
+        <span class="num">PASSO 02</span>
+        <h3>A cozinha recebe na hora</h3>
+        <p>Chega com som, faixa na tela e cronômetro, e a tela não apaga. Ninguém precisa estar olhando para o pedido ser percebido.</p>
+      </div>
+      <div class="step">
+        <span class="num">PASSO 03</span>
+        <h3>A conta já está certa</h3>
+        <p>Toda rodada cai na mesma comanda. Divide, recebe parte em dinheiro e parte no cartão, imprime — e a mesa só libera quando está paga.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="inside">
+  <div class="wrap">
+    <div class="section-head revela">
+      <p class="eyebrow">O que tem dentro</p>
+      <h2>Tudo que um salão pequeno precisa, e nada do que ele não precisa.</h2>
+    </div>
+
+    <div class="grid revela">
+      <div class="card">
+        <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h10"/></svg> Pedido na mesa</h3>
+        <p>Feito para uma tela de 5,5 polegadas, numa mão só, em pé, num salão mais barulhento que o seu escritório.</p>
+      </div>
+      <div class="card">
+        <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h7v7h-7z"/></svg> Cardápio por QR, se você quiser</h3>
+        <p>O cliente escaneia o código da mesa e pede sozinho. Liga e desliga quando quiser — a comanda do garçom e a do cliente são a mesma.</p>
+      </div>
+      <div class="card">
+        <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 7v5l3 2"/><circle cx="12" cy="12" r="9"/></svg> Tela da cozinha</h3>
+        <p>Um cronômetro por comanda, que fica amarelo e depois vermelho: “há quanto tempo isso está aí?” deixa de ser chute.</p>
+      </div>
+      <div class="card">
+        <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 9V4h12v5"/><rect x="4" y="9" width="16" height="7" rx="1.5"/><path d="M8 16h8v4H8z"/></svg> Impressão</h3>
+        <p>Comanda da cozinha sem preço, conta do cliente com preço. Imprime do navegador na impressora que você já tem.</p>
+      </div>
+      <div class="card">
+        <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 19V5M4 15l5-4 4 3 7-7"/></svg> Relatório que responde pergunta</h3>
+        <p>O que vendeu, o que encalhou, o horário de pico, o ticket médio. No seu fuso, para a noite de sábado ser uma noite só.</p>
+      </div>
+      <div class="card">
+        <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 3l7 4v6c0 4-3 6.5-7 8-4-1.5-7-4-7-8V7l7-4Z"/></svg> Papéis que valem alguma coisa</h3>
+        <p>A tela da cozinha não tem preço. O salão não tem relatório. E ninguém vê o dado de outro estabelecimento — garantido no banco, não na boa vontade.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="who">
+  <div class="wrap split">
+    <div class="revela">
+      <p class="eyebrow">Para quem é</p>
+      <h2>Salão onde o garçom anda.</h2>
+      <p class="lede" style="margin-top:1.25rem">
+        Espetaria, bar, pizzaria, café, food truck — lugar com mesa, com rodada e
+        com uma cozinha que precisa saber do pedido agora.
+      </p>
+    </div>
+
+    <ul class="plain revela">
+      <li><strong>O aparelho você já tem.</strong> Qualquer celular ou tablet com navegador. A tela da cozinha pode ser o tablet mais barato, pendurado na parede.</li>
+      <li><strong>Seu cardápio muda na sexta.</strong> Marcar esgotado é um toque, e o item some do cardápio do cliente na hora.</li>
+      <li><strong>Você quer a conta certa.</strong> O preço é calculado no servidor, a partir do seu cardápio — nunca no aparelho que está na mão de alguém.</li>
+      <li><strong>Você tem mais de uma casa.</strong> Cada uma com endereço próprio, cores próprias e dado próprio. Nada vaza de uma para a outra.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="pricing">
+  <div class="wrap">
+    <div class="section-head revela">
+      <p class="eyebrow">Preço</p>
+      <h2>Valor fixo por casa. Nunca um pedaço da sua venda.</h2>
+    </div>
+
+    <div class="price revela">
+      <div class="lines">
+        <div class="line"><b>Implantação</b><span>Uma vez. Cadastramos o cardápio, imprimimos os códigos das mesas, treinamos a equipe e ficamos no seu salão na primeira noite cheia.</span></div>
+        <div class="line"><b>Mensalidade</b><span>Um preço por casa, com tudo que está acima, suporte e atualizações incluídos.</span></div>
+        <div class="line"><b>Comissão</b><span>Nenhuma. O que o cliente paga é seu — não passamos no meio disso.</span></div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:1rem;align-items:flex-start">
+        <p style="color:var(--muted);font-size:.95rem">
+          O número depende de onde você está e de quantas casas você tem. Conte
+          da sua e a gente responde com o orçamento em um dia.
+        </p>
+        <a class="btn btn-lg" href="#contact">Pedir orçamento</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap">
+    <div class="section-head revela">
+      <p class="eyebrow">Resposta direta</p>
+      <h2>As perguntas que o dono faz de verdade.</h2>
+    </div>
+
+    <div class="faq revela">
+      <details>
+        <summary>Preciso comprar tablet ou maquininha?</summary>
+        <p>Não. Roda no navegador dos celulares que a equipe já tem. Se quiser uma tela na parede da cozinha, o tablet Android mais barato resolve — ele só precisa ficar na tomada e no wi-fi.</p>
+      </details>
+      <details>
+        <summary>E se a internet cair?</summary>
+        <p>Pedido já enviado continua na tela da cozinha. Pedido novo depende da conexão, igual à sua maquininha. E vamos ser diretos: é um sistema conectado, e salão sem wi-fi confiável ainda não é a casa certa para ele.</p>
+      </details>
+      <details>
+        <summary>Meu cliente precisa baixar aplicativo?</summary>
+        <p>Nunca. O QR abre o cardápio no navegador do celular. E se você preferir que só o garçom anote, não precisa usar QR nenhum.</p>
+      </details>
+      <details>
+        <summary>Dá para receber pagamento por ele?</summary>
+        <p>Hoje o caixa registra o que entrou — dinheiro, cartão, PIX — e a comanda fecha com isso. Integração com maquininha entra uma de cada vez, só com ferramenta oficial do provedor, nunca com endpoint descoberto na marra.</p>
+      </details>
+      <details>
+        <summary>De quem é o dado?</summary>
+        <p>Seu. Seu cardápio, suas vendas, seus clientes. Cada casa é isolada no banco, e você pode pedir a exportação quando quiser.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap cta revela">
+    <p class="eyebrow">Fale com a gente</p>
+    <h2 style="max-width:22ch">Mostre seu salão. A gente mostra a comanda.</h2>
+    <p class="lede" style="max-width:46ch;text-align:center">
+      Vinte minutos bastam para saber se isso serve para a sua casa. Se não
+      servir, a gente fala.
+    </p>
+    <a class="btn btn-lg" href="mailto:contato@comandeiro.com.br?subject=Demonstra%C3%A7%C3%A3o%20do%20Comandeiro">contato@comandeiro.com.br</a>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Comandeiro — um produto <a href="https://avilaops.com">Avila Ops</a>.</span>
+    <span class="lang"><a href="https://comandeiro.com" hreflang="en">English →</a></span>
+  </div>
+</footer>
+
+<script src="/assets/comandeiro.js" defer></script>
+</body>
+</html>
