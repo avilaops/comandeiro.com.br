@@ -17,7 +17,8 @@ O que vale saber sem sair daqui:
 - **`hreflang` e `canonical` apontam para os dois domínios** nas linhas 9–12 do
   `index.html`. Se mudar um, mude o outro, ou o Google escolhe uma versão e
   enterra a outra.
-- **Ainda não está no ar.** A zona do `.com.br` está pendente. Quando propagar:
-  subir os arquivos, ligar o bloco no Caddy e criar `contato@comandeiro.com.br`.
+- **Está no ar.** A zona é ativa na Cloudflare, nos mesmos nameservers do `.com`,
+  e o `contato@comandeiro.com.br` encaminha para o Gmail do dono.
 
-Contato do site: `contato@comandeiro.com.br` (o inglês usa `hello@`).
+Contato do site: `contato@comandeiro.com.br` (o inglês usa `hello@`). Os dois
+domínios também respondem em `hello@`, e todos caem na mesma caixa.
