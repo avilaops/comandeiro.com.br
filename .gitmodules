@@ -1,0 +1,3 @@
+[submodule "operacao/minas.comandeiro.com.br"]
+	path = operacao/minas.comandeiro.com.br
+	url = https://github.com/avilaops/minas.avilaops.com.git
