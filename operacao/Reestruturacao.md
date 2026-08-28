@@ -4,7 +4,7 @@ A topologia ideal fica:
 
 ```text
 comandeiro.com.br              site comercial Brasil
-minas.comandeiro.com.br        operação do Minas
+brasa.comandeiro.com.br        operação da Brasa Mineira
 comandeiro.com                 site comercial global
 restaurant.comandeiro.com      operação internacional
 
@@ -27,18 +27,18 @@ Eu adotaria:
 O operador poderia acessar:
 
 ```text
-minas.comandeiro.com.br/entrar
+brasa.comandeiro.com.br/entrar
         ↓
 auth.comandeiro.com/authorize
         ↓
-app.comandeiro.com/minas
+app.comandeiro.com/brasa
 ```
 
 Para resolver o tenant, eu usaria uma tabela explícita de domínios:
 
 ```text
 hostname                     tenant_id   região   idioma   moeda   status
-minas.comandeiro.com.br      minas       BR       pt-BR    BRL     ativo
+brasa.comandeiro.com.br      brasa       BR       pt-BR    BRL     ativo
 restaurant.comandeiro.com    rest_123    US       en-US    USD     ativo
 ```
 

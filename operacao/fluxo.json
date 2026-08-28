@@ -36,9 +36,9 @@
     },
     "examples": [
       {
-        "tenant_id": "minas",
-        "tenant_name": "Minas Espetinhos Reserva Real",
-        "hostname": "minas.comandeiro.com.br",
+        "tenant_id": "brasa",
+        "tenant_name": "Brasa Mineira",
+        "hostname": "brasa.comandeiro.com.br",
         "region": "BR",
         "language": "pt-BR",
         "currency": "BRL",
@@ -198,11 +198,11 @@
       "steps": [
         {
           "order": 1,
-          "request": "GET https://minas.comandeiro.com.br/entrar",
+          "request": "GET https://brasa.comandeiro.com.br/entrar",
           "action": "create_login_intent",
           "data": {
-            "tenant_slug": "minas",
-            "return_to": "https://app.comandeiro.com/minas"
+            "tenant_slug": "brasa",
+            "return_to": "https://app.comandeiro.com/brasa"
           }
         },
         {
@@ -270,7 +270,7 @@
         {
           "order": 10,
           "response": "302 redirect",
-          "location": "https://app.comandeiro.com/minas"
+          "location": "https://app.comandeiro.com/brasa"
         }
       ]
     },
