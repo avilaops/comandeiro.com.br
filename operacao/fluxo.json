@@ -1,0 +1,517 @@
+{
+  "version": "1.0.0",
+  "product": "Comandeiro",
+  "architecture": {
+    "strategy": "multi-region-multi-tenant",
+    "administration": "centralized",
+    "api": "centralized",
+    "authentication": "redirect-based-sso",
+    "tenant_resolution": "verified-hostname"
+  },
+  "domains": {
+    "marketing": {
+      "brazil": {
+        "hostname": "comandeiro.com.br",
+        "region": "BR",
+        "language": "pt-BR",
+        "currency": "BRL"
+      },
+      "global": {
+        "hostname": "comandeiro.com",
+        "region": "GLOBAL",
+        "default_language": "en",
+        "default_currency": "USD"
+      }
+    },
+    "platform": {
+      "admin": "app.comandeiro.com",
+      "authentication": "auth.comandeiro.com",
+      "api": "api.comandeiro.com",
+      "assets": "assets.comandeiro.com",
+      "status": "status.comandeiro.com"
+    },
+    "tenant_patterns": {
+      "brazil": "{tenantSlug}.comandeiro.com.br",
+      "global": "{tenantSlug}.comandeiro.com"
+    },
+    "examples": [
+      {
+        "tenant_id": "minas",
+        "tenant_name": "Minas Espetinhos Reserva Real",
+        "hostname": "minas.comandeiro.com.br",
+        "region": "BR",
+        "language": "pt-BR",
+        "currency": "BRL",
+        "timezone": "America/Sao_Paulo"
+      },
+      {
+        "tenant_id": "restaurant",
+        "tenant_name": "Example Restaurant",
+        "hostname": "restaurant.comandeiro.com",
+        "region": "US",
+        "language": "en-US",
+        "currency": "USD",
+        "timezone": "America/New_York"
+      }
+    ]
+  },
+  "reserved_subdomains": [
+    "www",
+    "app",
+    "api",
+    "auth",
+    "admin",
+    "assets",
+    "static",
+    "status",
+    "docs",
+    "mail",
+    "support",
+    "billing",
+    "webhook",
+    "webhooks"
+  ],
+  "tenant_domain_model": {
+    "table": "tenant_domains",
+    "fields": {
+      "id": "uuid",
+      "tenant_id": "uuid",
+      "hostname": "string_unique",
+      "base_domain": "comandeiro.com.br | comandeiro.com",
+      "region": "ISO-3166-1-alpha-2",
+      "language": "BCP-47",
+      "currency": "ISO-4217",
+      "timezone": "IANA-timezone",
+      "is_primary": "boolean",
+      "is_verified": "boolean",
+      "status": "pending | active | suspended | removed",
+      "verified_at": "datetime|null",
+      "created_at": "datetime",
+      "updated_at": "datetime"
+    },
+    "constraints": [
+      "hostname must be unique",
+      "hostname must be lowercase",
+      "hostname cannot use a reserved subdomain",
+      "hostname must belong to an approved base domain",
+      "active domains must be verified",
+      "each tenant must have exactly one primary domain per region"
+    ]
+  },
+  "hostname_resolution": {
+    "steps": [
+      {
+        "order": 1,
+        "action": "read_request_hostname",
+        "source": "Host header"
+      },
+      {
+        "order": 2,
+        "action": "accept_forwarded_hostname_only_from_trusted_proxy",
+        "source": "X-Forwarded-Host"
+      },
+      {
+        "order": 3,
+        "action": "normalize_hostname",
+        "operations": [
+          "convert to lowercase",
+          "remove port",
+          "remove trailing dot",
+          "convert IDN to ASCII",
+          "reject invalid characters"
+        ]
+      },
+      {
+        "order": 4,
+        "action": "lookup_exact_hostname",
+        "table": "tenant_domains"
+      },
+      {
+        "order": 5,
+        "action": "validate_domain",
+        "requirements": [
+          "status equals active",
+          "is_verified equals true",
+          "tenant is active"
+        ]
+      },
+      {
+        "order": 6,
+        "action": "create_tenant_context",
+        "fields": [
+          "tenant_id",
+          "region",
+          "language",
+          "currency",
+          "timezone",
+          "hostname"
+        ]
+      }
+    ],
+    "unknown_hostname_behavior": {
+      "status": 404,
+      "error_code": "TENANT_DOMAIN_NOT_FOUND",
+      "fallback_tenant": false
+    }
+  },
+  "authentication": {
+    "rules": {
+      "shared_cookie_between_base_domains": false,
+      "admin_session_domain": "app.comandeiro.com",
+      "identity_provider": "auth.comandeiro.com",
+      "api_domain": "api.comandeiro.com"
+    },
+    "cookies": {
+      "admin_session": {
+        "name": "__Host-comandeiro_app_session",
+        "host": "app.comandeiro.com",
+        "domain_attribute": null,
+        "path": "/",
+        "secure": true,
+        "http_only": true,
+        "same_site": "Lax",
+        "host_only": true
+      },
+      "auth_session": {
+        "name": "__Host-comandeiro_auth_session",
+        "host": "auth.comandeiro.com",
+        "domain_attribute": null,
+        "path": "/",
+        "secure": true,
+        "http_only": true,
+        "same_site": "Lax",
+        "host_only": true
+      },
+      "public_table_session": {
+        "name": "__Host-comandeiro_table_session",
+        "host": "{tenantHostname}",
+        "domain_attribute": null,
+        "path": "/",
+        "secure": true,
+        "http_only": true,
+        "same_site": "Lax",
+        "host_only": true
+      }
+    },
+    "sso_flow": {
+      "name": "tenant-to-universal-admin",
+      "steps": [
+        {
+          "order": 1,
+          "request": "GET https://minas.comandeiro.com.br/entrar",
+          "action": "create_login_intent",
+          "data": {
+            "tenant_slug": "minas",
+            "return_to": "https://app.comandeiro.com/minas"
+          }
+        },
+        {
+          "order": 2,
+          "response": "302 redirect",
+          "location": "https://auth.comandeiro.com/authorize"
+        },
+        {
+          "order": 3,
+          "action": "validate_authorization_request",
+          "requirements": [
+            "client_id is registered",
+            "redirect_uri matches exactly",
+            "return_to uses an approved path",
+            "state is present",
+            "nonce is present",
+            "PKCE challenge is present"
+          ]
+        },
+        {
+          "order": 4,
+          "action": "authenticate_user",
+          "methods": [
+            "password",
+            "passkey",
+            "one-time code"
+          ]
+        },
+        {
+          "order": 5,
+          "action": "validate_tenant_membership",
+          "requirements": [
+            "user is active",
+            "tenant is active",
+            "membership is active",
+            "user role permits administration"
+          ]
+        },
+        {
+          "order": 6,
+          "action": "create_single_use_authorization_code",
+          "ttl_seconds": 60
+        },
+        {
+          "order": 7,
+          "response": "302 redirect",
+          "location": "https://app.comandeiro.com/auth/callback?code={oneTimeCode}&state={state}"
+        },
+        {
+          "order": 8,
+          "action": "exchange_authorization_code_server_to_server",
+          "requirements": [
+            "code is unused",
+            "code is not expired",
+            "redirect_uri matches",
+            "PKCE verifier matches",
+            "state matches"
+          ]
+        },
+        {
+          "order": 9,
+          "action": "create_app_session_cookie",
+          "host": "app.comandeiro.com"
+        },
+        {
+          "order": 10,
+          "response": "302 redirect",
+          "location": "https://app.comandeiro.com/minas"
+        }
+      ]
+    },
+    "token_policy": {
+      "authorization_code": {
+        "single_use": true,
+        "stored_as_hash": true,
+        "ttl_seconds": 60
+      },
+      "access_token": {
+        "ttl_seconds": 600,
+        "audience": "api.comandeiro.com",
+        "required_claims": [
+          "sub",
+          "tenant_id",
+          "membership_id",
+          "role",
+          "region",
+          "aud",
+          "iss",
+          "iat",
+          "exp",
+          "jti"
+        ]
+      },
+      "refresh_token": {
+        "ttl_seconds": 2592000,
+        "rotation": true,
+        "reuse_detection": true,
+        "stored_as_hash": true
+      },
+      "query_string_tokens": {
+        "persistent_session_token_allowed": false,
+        "single_use_authorization_code_allowed": true
+      }
+    }
+  },
+  "api": {
+    "hostname": "api.comandeiro.com",
+    "tenant_context_sources": {
+      "authenticated_request": "tenant_id from validated access token",
+      "public_table_request": "tenant_id from validated signed table session",
+      "webhook_request": "tenant_id from registered provider account",
+      "client_supplied_tenant_header": "forbidden"
+    },
+    "cors": {
+      "credentials": true,
+      "allow_wildcard_origin": false,
+      "origin_validation": "exact database match",
+      "static_origins": [
+        "https://app.comandeiro.com",
+        "https://comandeiro.com",
+        "https://comandeiro.com.br"
+      ],
+      "dynamic_origins": {
+        "source": "tenant_domains",
+        "requirements": [
+          "is_verified equals true",
+          "status equals active"
+        ]
+      },
+      "allowed_methods": [
+        "GET",
+        "POST",
+        "PUT",
+        "PATCH",
+        "DELETE",
+        "OPTIONS"
+      ],
+      "allowed_headers": [
+        "Authorization",
+        "Content-Type",
+        "Idempotency-Key",
+        "X-CSRF-Token",
+        "X-Request-ID"
+      ]
+    },
+    "request_validation": [
+      "validate origin when present",
+      "validate authentication",
+      "resolve tenant from trusted source",
+      "validate tenant membership",
+      "validate role and permission",
+      "apply tenant database context",
+      "apply rate limit",
+      "record audit event"
+    ]
+  },
+  "websockets": {
+    "endpoint": "wss://api.comandeiro.com/realtime",
+    "origin_validation": "exact verified origin",
+    "authentication": {
+      "method": "short-lived access token",
+      "token_in_query_string": false,
+      "preferred_transport": "Sec-WebSocket-Protocol or initial authenticated message"
+    },
+    "authorization": [
+      "validate token issuer",
+      "validate token audience",
+      "validate token expiration",
+      "validate tenant_id",
+      "validate membership",
+      "authorize requested channel"
+    ],
+    "channel_patterns": [
+      "tenant:{tenantId}:kitchen",
+      "tenant:{tenantId}:service",
+      "tenant:{tenantId}:orders",
+      "tenant:{tenantId}:tables"
+    ],
+    "cross_tenant_subscription": false
+  },
+  "oauth": {
+    "callback_strategy": "centralized",
+    "allowed_callbacks": [
+      "https://app.comandeiro.com/auth/callback",
+      "https://auth.comandeiro.com/oauth/callback"
+    ],
+    "dynamic_callback_urls": false,
+    "required_controls": [
+      "exact redirect URI matching",
+      "state validation",
+      "nonce validation",
+      "PKCE",
+      "single-use authorization code",
+      "short expiration",
+      "approved return paths"
+    ]
+  },
+  "seo": {
+    "brazil": {
+      "canonical": "https://comandeiro.com.br/",
+      "hreflang": "pt-BR",
+      "language": "pt-BR",
+      "currency": "BRL",
+      "country_target": "BR"
+    },
+    "global": {
+      "canonical": "https://comandeiro.com/",
+      "hreflang": "en",
+      "language": "en",
+      "default_currency": "USD",
+      "country_target": "GLOBAL"
+    },
+    "alternate_links": [
+      {
+        "hreflang": "pt-BR",
+        "href": "https://comandeiro.com.br/"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://comandeiro.com/"
+      },
+      {
+        "hreflang": "x-default",
+        "href": "https://comandeiro.com/"
+      }
+    ],
+    "rules": [
+      "use separate URLs for each language and region",
+      "use reciprocal hreflang links",
+      "use a canonical URL for each localized page",
+      "provide a visible region and language selector",
+      "do not force redirect only from IP or browser language",
+      "keep language consistent within each page",
+      "publish separate sitemaps for each base domain"
+    ]
+  },
+  "dns_and_tls": {
+    "dns": {
+      "brazil_wildcard": "*.comandeiro.com.br",
+      "global_wildcard": "*.comandeiro.com",
+      "required_platform_records": [
+        "app.comandeiro.com",
+        "auth.comandeiro.com",
+        "api.comandeiro.com",
+        "assets.comandeiro.com",
+        "status.comandeiro.com"
+      ]
+    },
+    "tls": {
+      "required_certificates": [
+        "comandeiro.com",
+        "*.comandeiro.com",
+        "comandeiro.com.br",
+        "*.comandeiro.com.br"
+      ],
+      "wildcard_validation": "DNS-01",
+      "http_to_https_redirect": true
+    }
+  },
+  "security": {
+    "headers": {
+      "Strict-Transport-Security": "max-age=63072000; includeSubDomains; preload",
+      "X-Content-Type-Options": "nosniff",
+      "Referrer-Policy": "strict-origin-when-cross-origin",
+      "Permissions-Policy": "camera=(), microphone=(), geolocation=()",
+      "Content-Security-Policy": "configured per application surface"
+    },
+    "tenant_isolation": [
+      "tenant context applied before every database operation",
+      "database queries scoped by tenant_id",
+      "background jobs carry tenant_id explicitly",
+      "cache keys contain tenant_id",
+      "storage paths contain tenant_id",
+      "webhook configurations belong to one tenant",
+      "audit logs contain tenant_id and actor_id",
+      "unknown hosts never receive a default tenant"
+    ]
+  },
+  "main_flows": {
+    "public_order": [
+      "customer opens tenant hostname",
+      "backend resolves verified hostname",
+      "backend creates tenant context",
+      "customer scans or validates table token",
+      "server creates host-only table session",
+      "prices are loaded from the tenant catalog",
+      "order is calculated on the server",
+      "order is stored with tenant_id",
+      "kitchen receives tenant-scoped realtime event"
+    ],
+    "staff_login": [
+      "staff opens tenant login URL",
+      "tenant hostname is validated",
+      "browser redirects to auth.comandeiro.com",
+      "identity is authenticated",
+      "tenant membership is validated",
+      "single-use code is issued",
+      "app.comandeiro.com exchanges the code",
+      "host-only app session is created",
+      "staff is redirected to the tenant workspace"
+    ],
+    "admin_api_request": [
+      "app sends access token to api.comandeiro.com",
+      "API validates issuer, audience and expiration",
+      "tenant_id is read from the token",
+      "membership and permission are validated",
+      "database tenant context is applied",
+      "operation is executed",
+      "audit event is recorded"
+    ]
+  }
+}
