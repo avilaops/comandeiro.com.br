@@ -242,4 +242,28 @@
     <loc>https://comandeiro.com.br/guia/como-fazer-o-cliente-voltar/</loc>
     <changefreq>monthly</changefreq><priority>0.6</priority>
   </url>
+  <url>
+    <loc>https://comandeiro.com.br/guia/o-que-e-inventario-de-estoque/</loc>
+    <changefreq>monthly</changefreq><priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://comandeiro.com.br/guia/como-controlar-o-estoque-de-um-restaurante/</loc>
+    <changefreq>monthly</changefreq><priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://comandeiro.com.br/guia/como-delegar-em-um-restaurante/</loc>
+    <changefreq>monthly</changefreq><priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://comandeiro.com.br/guia/como-fazer-a-casa-funcionar-sem-o-dono/</loc>
+    <changefreq>monthly</changefreq><priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://comandeiro.com.br/guia/quais-indicadores-acompanhar-em-um-restaurante/</loc>
+    <changefreq>monthly</changefreq><priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://comandeiro.com.br/guia/como-negociar-com-fornecedor/</loc>
+    <changefreq>monthly</changefreq><priority>0.6</priority>
+  </url>
 </urlset>
