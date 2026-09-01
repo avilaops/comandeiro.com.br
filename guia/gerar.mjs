@@ -162,8 +162,10 @@ async function gerarVerbete(v) {
     .map((o) => `<li><a href="/guia/${o.slug}/">${esc(o.titulo)}</a></li>`)
     .join("");
 
-  // Vizinho que ainda não existe não vira link quebrado: some. O plano tem 365
-  // verbetes e eles não nascem no mesmo dia.
+  // Vizinho que ainda não existe some do HTML em vez de virar link quebrado —
+  // o plano tem 365 verbetes e eles não nascem no mesmo dia. Mas some em
+  // SILÊNCIO, e silêncio esconde erro de digitação no slug. Por isso o
+  // gerador reclama no fim (ver `pendentes`).
   const proximos = vizinhos
     ? `<nav class="guia-proximos" aria-label="Leia também"><h2>Leia também</h2><ul>${vizinhos}</ul></nav>`
     : "";
@@ -235,6 +237,23 @@ const urls = [];
 for (const v of verbetes) urls.push(await gerarVerbete(v));
 urls.push(await gerarIndice());
 
+/*
+ * Vizinhos apontados que ainda não existem.
+ *
+ * Não é erro: é a fila do que escrever a seguir, e ela sai do próprio texto em
+ * vez de uma lista à parte que envelhece. Se aparecer aqui um slug que você
+ * não reconhece, é erro de digitação — e sem este aviso ele sumiria calado.
+ */
+const existentes = new Set(verbetes.map((v) => v.slug));
+const pendentes = new Map();
+for (const v of verbetes) {
+  for (const alvo of v.vizinhos ?? []) {
+    if (existentes.has(alvo)) continue;
+    if (!pendentes.has(alvo)) pendentes.set(alvo, []);
+    pendentes.get(alvo).push(v.slug);
+  }
+}
+
 // O sitemap existente não conhece o guia. Em vez de reescrevê-lo por inteiro,
 // o gerador avisa o que precisa entrar — mexer no sitemap da mão de outra
 // pessoa sem ela saber é como se perde entrada no Google.
@@ -242,6 +261,14 @@ const sitemap = await readFile(path.join(site, "sitemap.xml"), "utf8").catch(() 
 const faltando = urls.filter((u) => !sitemap.includes(u));
 
 console.log(`${verbetes.length} verbetes + índice gerados.`);
+
+if (pendentes.size) {
+  console.log(`
+Apontados e ainda não escritos (${pendentes.size}):`);
+  for (const [alvo, origens] of pendentes) {
+    console.log(`  ${alvo}  <- ${origens.join(", ")}`);
+  }
+}
 if (faltando.length) {
   console.log(`\nFalta no sitemap.xml (${faltando.length}):`);
   for (const u of faltando) console.log(`  ${u}`);

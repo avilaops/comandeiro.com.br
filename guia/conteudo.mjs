@@ -19,6 +19,10 @@
  *                 quem confiou
  */
 
+import salao from "./verbetes/salao.mjs";
+import dinheiro from "./verbetes/dinheiro.mjs";
+import fiscal from "./verbetes/fiscal.mjs";
+
 export const temas = {
   comanda: { nome: "Comanda, pedido e salão", mes: "Setembro" },
   cozinha: { nome: "Cozinha e produção", mes: "Outubro" },
@@ -34,7 +38,7 @@ export const temas = {
   tecnologia: { nome: "Tecnologia e escolha de sistema", mes: "Agosto" },
 };
 
-export const verbetes = [
+const lotePrimeiro = [
   {
     slug: "o-que-e-cmv",
     tema: "cardapio",
@@ -297,3 +301,26 @@ export const verbetes = [
     vizinhos: ["quais-impostos-um-restaurante-paga", "restaurante-pode-ser-mei"],
   },
 ];
+
+/*
+ * Os lotes, por tema.
+ *
+ * Um arquivo por assunto em vez de um arquivão: com 365 verbetes, procurar
+ * "o que é markup" num arquivo de dez mil linhas é o tipo de atrito que faz
+ * a pessoa desistir de corrigir um erro que ela viu.
+ */
+export const verbetes = [
+  ...lotePrimeiro,
+  ...salao,
+  ...dinheiro,
+  ...fiscal,
+];
+
+/* Slug repetido geraria duas páginas na mesma URL, e a segunda venceria em
+   silêncio. Melhor quebrar o build. */
+const vistos = new Set();
+for (const v of verbetes) {
+  if (vistos.has(v.slug)) throw new Error(`Slug repetido: ${v.slug}`);
+  vistos.add(v.slug);
+}
+
