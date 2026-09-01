@@ -6,4 +6,48 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://comandeiro.com/"/>
     <changefreq>weekly</changefreq><priority>1.0</priority>
   </url>
+  <url>
+    <loc>https://comandeiro.com.br/guia/o-que-e-cmv/</loc>
+    <changefreq>monthly</changefreq><priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://comandeiro.com.br/guia/o-que-e-ficha-tecnica-de-prato/</loc>
+    <changefreq>monthly</changefreq><priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://comandeiro.com.br/guia/como-calcular-o-preco-de-venda-de-um-prato/</loc>
+    <changefreq>monthly</changefreq><priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://comandeiro.com.br/guia/o-que-e-markup/</loc>
+    <changefreq>monthly</changefreq><priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://comandeiro.com.br/guia/o-que-e-ticket-medio/</loc>
+    <changefreq>monthly</changefreq><priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://comandeiro.com.br/guia/o-que-e-comanda-eletronica/</loc>
+    <changefreq>monthly</changefreq><priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://comandeiro.com.br/guia/quanto-custa-abrir-um-restaurante/</loc>
+    <changefreq>monthly</changefreq><priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://comandeiro.com.br/guia/quanto-o-ifood-cobra-de-comissao/</loc>
+    <changefreq>monthly</changefreq><priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://comandeiro.com.br/guia/a-taxa-de-10-por-cento-e-obrigatoria/</loc>
+    <changefreq>monthly</changefreq><priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://comandeiro.com.br/guia/o-que-e-nfc-e/</loc>
+    <changefreq>monthly</changefreq><priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://comandeiro.com.br/guia/</loc>
+    <changefreq>weekly</changefreq><priority>0.8</priority>
+  </url>
 </urlset>
