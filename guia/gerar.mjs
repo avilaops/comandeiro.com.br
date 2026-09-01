@@ -254,11 +254,31 @@ for (const v of verbetes) {
   }
 }
 
-// O sitemap existente não conhece o guia. Em vez de reescrevê-lo por inteiro,
-// o gerador avisa o que precisa entrar — mexer no sitemap da mão de outra
-// pessoa sem ela saber é como se perde entrada no Google.
-const sitemap = await readFile(path.join(site, "sitemap.xml"), "utf8").catch(() => "");
+// O sitemap é do site inteiro, não só do guia. Por isso o gerador NÃO o
+// reescreve: ele insere as URLs que faltam logo antes do fechamento e deixa
+// intacto tudo o que já estava lá, inclusive o que outra pessoa colocou.
+//
+// Fazia isso à mão e o passo era esquecido: verbete publicado e fora do
+// sitemap é verbete que o Google demora meses a achar, que é a única coisa
+// que o guia precisa que aconteça.
+const arquivoSitemap = path.join(site, "sitemap.xml");
+const sitemap = await readFile(arquivoSitemap, "utf8").catch(() => "");
 const faltando = urls.filter((u) => !sitemap.includes(u));
+
+if (faltando.length && sitemap.includes("</urlset>")) {
+  const bloco = faltando
+    .map(
+      (u) =>
+        `  <url>
+    <loc>${u}</loc>
+` +
+        `    <changefreq>monthly</changefreq><priority>0.6</priority>
+  </url>
+`,
+    )
+    .join("");
+  await writeFile(arquivoSitemap, sitemap.replace("</urlset>", bloco + "</urlset>"));
+}
 
 console.log(`${verbetes.length} verbetes + índice gerados.`);
 
@@ -270,6 +290,6 @@ Apontados e ainda não escritos (${pendentes.size}):`);
   }
 }
 if (faltando.length) {
-  console.log(`\nFalta no sitemap.xml (${faltando.length}):`);
+  console.log(`\nAcrescentadas ao sitemap.xml (${faltando.length}):`);
   for (const u of faltando) console.log(`  ${u}`);
 }

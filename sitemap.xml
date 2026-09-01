@@ -266,4 +266,28 @@
     <loc>https://comandeiro.com.br/guia/como-negociar-com-fornecedor/</loc>
     <changefreq>monthly</changefreq><priority>0.6</priority>
   </url>
+  <url>
+    <loc>https://comandeiro.com.br/guia/como-atender-uma-mesa-grande/</loc>
+    <changefreq>monthly</changefreq><priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://comandeiro.com.br/guia/como-trabalhar-com-reserva/</loc>
+    <changefreq>monthly</changefreq><priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://comandeiro.com.br/guia/como-preparar-a-casa-para-um-dia-cheio/</loc>
+    <changefreq>monthly</changefreq><priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://comandeiro.com.br/guia/como-cobrar-por-um-evento-fechado/</loc>
+    <changefreq>monthly</changefreq><priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://comandeiro.com.br/guia/como-lidar-com-fila-de-espera/</loc>
+    <changefreq>monthly</changefreq><priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://comandeiro.com.br/guia/vale-a-pena-abrir-em-feriado/</loc>
+    <changefreq>monthly</changefreq><priority>0.6</priority>
+  </url>
 </urlset>
