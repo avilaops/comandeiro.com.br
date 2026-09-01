@@ -25,6 +25,8 @@ import fiscal from "./verbetes/fiscal.mjs";
 import cozinha from "./verbetes/cozinha.mjs";
 import cardapio from "./verbetes/cardapio.mjs";
 import tecnologia from "./verbetes/tecnologia.mjs";
+import equipe from "./verbetes/equipe.mjs";
+import cliente from "./verbetes/cliente.mjs";
 
 export const temas = {
   comanda: { nome: "Comanda, pedido e salão", mes: "Setembro" },
@@ -320,6 +322,8 @@ export const verbetes = [
   ...cozinha,
   ...cardapio,
   ...tecnologia,
+  ...equipe,
+  ...cliente,
 ];
 
 /* Slug repetido geraria duas páginas na mesma URL, e a segunda venceria em
