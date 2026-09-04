@@ -290,4 +290,52 @@
     <loc>https://comandeiro.com.br/guia/vale-a-pena-abrir-em-feriado/</loc>
     <changefreq>monthly</changefreq><priority>0.6</priority>
   </url>
+  <url>
+    <loc>https://comandeiro.com.br/guia/o-que-fazer-quando-a-internet-cai/</loc>
+    <changefreq>monthly</changefreq><priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://comandeiro.com.br/guia/o-que-fazer-quando-o-sistema-sai-do-ar/</loc>
+    <changefreq>monthly</changefreq><priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://comandeiro.com.br/guia/o-que-fazer-quando-acaba-um-item-no-meio-do-movimento/</loc>
+    <changefreq>monthly</changefreq><priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://comandeiro.com.br/guia/o-que-fazer-quando-um-funcionario-falta/</loc>
+    <changefreq>monthly</changefreq><priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://comandeiro.com.br/guia/como-lidar-com-cliente-que-nao-paga/</loc>
+    <changefreq>monthly</changefreq><priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://comandeiro.com.br/guia/o-que-fazer-quando-o-cliente-passa-mal/</loc>
+    <changefreq>monthly</changefreq><priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://comandeiro.com.br/guia/como-se-preparar-para-o-dia-das-maes/</loc>
+    <changefreq>monthly</changefreq><priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://comandeiro.com.br/guia/vale-a-pena-abrir-no-natal-e-ano-novo/</loc>
+    <changefreq>monthly</changefreq><priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://comandeiro.com.br/guia/o-que-fazer-nos-meses-fracos/</loc>
+    <changefreq>monthly</changefreq><priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://comandeiro.com.br/guia/como-usar-a-data-comemorativa-para-vender-mais/</loc>
+    <changefreq>monthly</changefreq><priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://comandeiro.com.br/guia/como-prever-o-movimento-do-restaurante/</loc>
+    <changefreq>monthly</changefreq><priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://comandeiro.com.br/guia/o-que-fazer-em-dia-de-chuva/</loc>
+    <changefreq>monthly</changefreq><priority>0.6</priority>
+  </url>
 </urlset>
