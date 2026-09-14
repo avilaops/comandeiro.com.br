@@ -10,3 +10,7 @@ node_modules/
 out/
 output/
 *.tar.gz
+
+# Cópia de trabalho antiga, com o nome de antes do rebrand. O que valia dela
+# (o cardápio impresso) foi para o repo do app em 31/08/2026.
+operacao/minas.comandeiro.com.br/

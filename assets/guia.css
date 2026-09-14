@@ -1,0 +1,143 @@
+/*
+ * Guia do Comandeiro.
+ *
+ * Só o que o `comandeiro.css` não tem. Nenhuma cor literal aqui: tudo sai dos
+ * tokens do site, para o guia acompanhar a marca sem virar um segundo tema
+ * para manter.
+ *
+ * O guia é TEXTO LONGO lido por quem chegou do Google, quase sempre no
+ * celular, muitas vezes atrás de um balcão. As três decisões que seguem vêm
+ * daí: medida de linha curta, corpo grande e resposta antes da explicação.
+ */
+
+.guia-artigo .wrap {
+  /* 34rem de texto dá em torno de 70 caracteres por linha, que é onde o olho
+     encontra a linha de baixo sem se perder. Mais largo cansa. */
+  max-width: 34rem;
+  padding-top: 3rem;
+  padding-bottom: 4rem;
+}
+
+.guia-migalha {
+  margin-bottom: 1.25rem;
+  color: var(--muted);
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.guia-migalha a { color: var(--ember); text-decoration: none; }
+.guia-migalha a:hover { text-decoration: underline; }
+
+.guia-artigo h1 {
+  margin: 0 0 1rem;
+  font-size: clamp(1.9rem, 5.2vw, 2.6rem);
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+}
+
+/*
+ * A resposta curta, antes de tudo.
+ *
+ * Quem chega pelo Google quer a resposta, não a introdução. Este bloco é o
+ * contrato da página: se a pessoa ler só ele e for embora satisfeita, a página
+ * cumpriu o papel.
+ */
+.guia-resumo {
+  margin: 0 0 2rem;
+  padding-left: 1rem;
+  border-left: 3px solid var(--brand-terra);
+  color: var(--ink);
+  font-size: 1.15rem;
+  line-height: 1.55;
+}
+
+.guia-artigo h2 {
+  margin: 2.5rem 0 0.75rem;
+  font-size: 1.3rem;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+.guia-artigo p {
+  margin: 0 0 1.1rem;
+  /* 1.05rem, e não 1rem: o texto é lido em pé, no celular, com pouca luz. */
+  font-size: 1.05rem;
+  line-height: 1.68;
+  color: var(--ink);
+}
+
+.guia-lista { margin: 0 0 1.4rem; padding-left: 1.15rem; }
+.guia-lista li { margin-bottom: 0.6rem; font-size: 1.05rem; line-height: 1.6; }
+
+/* A conta, destacada do texto: é o que a pessoa volta para copiar. */
+.guia-formula {
+  margin: 0 0 1.4rem;
+  padding: 1rem 1.15rem;
+  border: 1px solid var(--rule);
+  border-radius: 0.65rem;
+  background: var(--panel-2);
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+/* Tabela rola sozinha no celular em vez de esticar a página. */
+.guia-tabela-wrap { margin: 0 0 1.4rem; overflow-x: auto; }
+.guia-tabela { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
+.guia-tabela th,
+.guia-tabela td { padding: 0.6rem 0.8rem; border-bottom: 1px solid var(--rule); text-align: left; white-space: nowrap; }
+.guia-tabela th { color: var(--muted); font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase; }
+
+/* O erro comum: a parte mais útil da página, e por isso a mais visível. */
+.guia-erro {
+  margin: 2rem 0;
+  padding: 1.1rem 1.25rem;
+  border: 1px solid var(--rule);
+  border-left: 3px solid var(--brand-amber);
+  border-radius: 0.65rem;
+  background: var(--panel);
+}
+.guia-erro strong {
+  display: block;
+  margin-bottom: 0.4rem;
+  color: var(--ember);
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.guia-erro p { margin: 0; }
+
+/*
+ * O produto, quando entra.
+ *
+ * Visualmente separado de propósito: o leitor precisa saber onde a explicação
+ * acabou e o anúncio começou. Guia que disfarça anúncio de conteúdo perde a
+ * confiança que o trouxe até ali.
+ */
+.guia-produto {
+  margin: 2rem 0 0;
+  padding: 1.1rem 1.25rem;
+  border-radius: 0.65rem;
+  background: var(--ember-soft);
+}
+.guia-produto p { margin: 0; font-size: 1rem; }
+
+.guia-proximos { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--rule); }
+.guia-proximos h2 { margin: 0 0 0.75rem; font-size: 0.8rem; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; }
+.guia-proximos ul { margin: 0; padding: 0; list-style: none; }
+.guia-proximos li { margin-bottom: 0.5rem; }
+.guia-proximos a { color: var(--ember); font-weight: 600; text-decoration: none; }
+.guia-proximos a:hover { text-decoration: underline; }
+
+/* Índice */
+.guia-tema { margin-bottom: 2.5rem; }
+.guia-tema h2 { margin: 0 0 0.9rem; font-size: 1.05rem; letter-spacing: 0.04em; text-transform: uppercase; color: var(--muted); }
+.guia-indice { margin: 0; padding: 0; list-style: none; }
+.guia-indice li { padding: 0.85rem 0; border-bottom: 1px solid var(--rule); }
+.guia-indice a { display: block; color: var(--ink); font-size: 1.05rem; font-weight: 600; text-decoration: none; }
+.guia-indice a:hover { color: var(--ember); }
+.guia-indice span { display: block; margin-top: 0.2rem; color: var(--muted); font-size: 0.92rem; line-height: 1.5; }
+
+.guia-rodape { padding: 2.5rem 0 3rem; border-top: 1px solid var(--rule); background: var(--panel-2); }
+.guia-rodape p { max-width: 34rem; margin: 0; color: var(--muted); font-size: 0.95rem; line-height: 1.6; }
+.guia-rodape a { color: var(--ember); font-weight: 600; }
