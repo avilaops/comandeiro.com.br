@@ -73,7 +73,7 @@ function cabeca({ titulo, descricao, url, extraJsonLd }) {
 <meta property="og:description" content="${esc(descricao)}">
 <meta property="og:type" content="article">
 <meta property="og:url" content="${url}">
-<meta property="og:image" content="${BASE}/og.png">
+<meta property="og:image" content="${BASE}/og-v2.png">
 <meta property="og:locale" content="pt_BR">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
