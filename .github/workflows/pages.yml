@@ -15,6 +15,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
       - name: Separa os arquivos publicados
         run: |
           mkdir _site
@@ -25,10 +27,26 @@ jobs:
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
         with:
           node-version: 24
+      - name: Obter publicador
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          repository: avilaops/motor-web
+          ref: a1bba366c848bf2df3634cba6de2649a8626435c
+          path: .publicacao-texto
+          persist-credentials: false
+      - name: Instalar publicador
+        working-directory: .publicacao-texto
+        run: npm ci --ignore-scripts --omit=dev
+      - name: Gerar SEO, imagens, MDX e descoberta
+        run: |
+          node .publicacao-texto/bin/publicar-seo.mjs --diretorio _site --configuracao seo.config.json --repositorio .
+          node .publicacao-texto/bin/publicar-texto.mjs --diretorio _site --origem https://comandeiro.com.br --indexar-texto
+          node .publicacao-texto/bin/publicar-descoberta.mjs --diretorio _site --origem https://comandeiro.com.br
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: cloudflare-pages-site
           path: _site
+          include-hidden-files: true
       - name: Publicar no Cloudflare Pages
         if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
         env:

@@ -1,0 +1,11 @@
+{
+  "origem": "https://comandeiro.com.br",
+  "nome": "Comandeiro",
+  "idioma": "pt-BR",
+  "imagem": "/og.png",
+  "icone": "/favicon-96x96.png",
+  "removerTagsLegadas": true,
+  "fontesGlobais": [
+    "seo.config.json"
+  ]
+}
