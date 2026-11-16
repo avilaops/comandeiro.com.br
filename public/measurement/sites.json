@@ -1,0 +1,40 @@
+{
+  "operations": {
+    "institutional": {
+      "name": "Avila • Institucionais",
+      "id": "GTM-MMTBHNRN"
+    },
+    "ecommerce": {
+      "name": "Avila • E-commerce",
+      "id": "GTM-M6JQNNMS"
+    },
+    "platform": {
+      "name": "Avila • Plataforma de e-commerce",
+      "id": "GTM-KLP5RSCZ"
+    },
+    "saas": {
+      "name": "Avila • SaaS",
+      "id": "GTM-NQSKDVVG"
+    }
+  },
+  "sites": [
+    {
+      "category": "institucional",
+      "status": "Não informado",
+      "domain": "comandeiro.com.br",
+      "gatewayPath": "/avmetrics/",
+      "operation": "institutional",
+      "aliases": [
+        "www.comandeiro.com.br"
+      ],
+      "applicationPrefixes": [],
+      "publicPrefixes": [],
+      "routeStatus": "pending-inventory",
+      "measurementId": "G-8TEMG79FDL",
+      "property": "properties/564378821",
+      "stream": "properties/564378821/dataStreams/16344228490",
+      "publicPaths": [],
+      "consentAdapter": "zaraz"
+    }
+  ]
+}
