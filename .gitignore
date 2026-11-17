@@ -8,6 +8,7 @@ Thumbs.db
 node_modules/
 .next/
 out/
+_site/
 output/
 *.tar.gz
 

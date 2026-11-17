@@ -23,10 +23,15 @@ jobs:
           cp *.html *.png *.ico *.txt *.json *.xml site.webmanifest _site/
           cp -r assets fonts _site/
           cp -r guia _site/
+          cp -r public/measurement _site/
           rm -rf _site/guia/verbetes _site/guia/*.mjs
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
         with:
           node-version: 24
+      - name: Preparar medição consentida
+        run: |
+          node --test scripts/measurement.test.mjs
+          node scripts/prepare-measurement.mjs _site
       - name: Obter publicador
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
